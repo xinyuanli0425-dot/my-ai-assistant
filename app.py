@@ -41,12 +41,22 @@ def cosine_similarity(a, b):
 # ================= 侧边栏设置 =================
 with st.sidebar:
     st.header("⚙️ 设置")
-    # 自动读取云端 Secrets
-    default_deepseek = st.secrets.get("DEEPSEEK_API_KEY", "")
-    default_zhipu = st.secrets.get("ZHIPU_API_KEY", "")
     
-    api_key = st.text_input("大模型 API Key (DeepSeek)", value=default_deepseek, type="password")
-    zhipu_key = st.text_input("向量模型 API Key (智谱)", value=default_zhipu, type="password")
+    # 尝试从云端 Secrets 读取 Key
+    secrets_deepseek = st.secrets.get("DEEPSEEK_API_KEY", "")
+    secrets_zhipu = st.secrets.get("ZHIPU_API_KEY", "")
+    
+    # 如果 Secrets 里配置了 Key，就直接使用并隐藏输入框
+    if secrets_deepseek and secrets_zhipu:
+        api_key = secrets_deepseek
+        zhipu_key = secrets_zhipu
+        st.success("✅ 接口已就绪 (云端安全配置已加载)")
+    else:
+        # 如果没配置（比如别人把你的代码下载到本地跑），才显示输入框
+        st.warning("⚠️ 未检测到云端配置，请手动输入 Key")
+        api_key = st.text_input("大模型 API Key (DeepSeek)", type="password")
+        zhipu_key = st.text_input("向量模型 API Key (智谱)", type="password")
+        
     st.divider()
     
     st.header("📂 资料上传")
