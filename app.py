@@ -5,10 +5,9 @@ import numpy as np
 import requests
 from openai import OpenAI
 
-st.set_page_config(page_title="我的私人科研智库", layout="wide")
+st.set_page_config(page_title="我的私人科研智库", page_icon="🧠", layout="wide")
 st.title("🧠 我的私人科研智库")
 st.caption("基于大模型的专属文献问答助手")
-st.set_page_config(page_title="我的私人科研智库", page_icon="🧠", layout="wide")
 
 # ================= 核心组件函数 =================
 
