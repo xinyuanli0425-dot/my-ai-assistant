@@ -9,7 +9,7 @@
 - 🔒 云端 API Key 安全隔离，支持公网访问
 
 ## 在线体验
-[点击这里访问我的 AI 助手](这里粘贴你的 streamlit 网址)
+[(https://xinyuanli-ai-assistant.streamlit.app/)]
 
 ## 技术栈
 Streamlit / pypdf / OpenAI SDK / Zhipu Embedding
