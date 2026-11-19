@@ -139,6 +139,8 @@ if st.button("检索并回答") and query:
                     for chunk in response:
                         if chunk.choices[0].delta.content:
                             yield chunk.choices[0].delta.content
-                st.write_stream(generate)
+                raw_text = st.write_stream(generate)
+                formatted_text = raw_text.replace(r'\[', '$$').replace(r'\]', '$$').replace(r'\(', '$').replace(r'\)', '$')
+                st.markdown(formatted_text)
             except Exception as e:
                 st.error(f"调用模型失败：{e}")
