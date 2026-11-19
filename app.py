@@ -122,7 +122,7 @@ if st.button("检索并回答") and query:
             
             # 4. 拼装发给大模型
             context_str = "\n\n---\n\n".join(matched_contexts)
-            system_prompt = f"你是一个科研助手。请严格根据以下参考资料回答用户的问题。\n\n参考资料：\n{context_str}"
+            system_prompt = f"你是一个科研助手。请严格根据以下参考资料回答用户的问题。如果遇到数学公式，请务必使用标准的 Markdown 格式，即使用 $$ 包裹独立公式，使用 $ 包裹行内公式。\n\n参考资料：\n{context_str}"
             
             client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
             
